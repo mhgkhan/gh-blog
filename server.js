@@ -22,6 +22,6 @@ if (cluster.isPrimary) {
 
 else {
     app.listen(process.env.PORT, () => {
-        console.log("app are listenning on port-4090")
+        console.log("APP ARE LISTENNING ON PORT",process.env.PORT)
     })
 }
