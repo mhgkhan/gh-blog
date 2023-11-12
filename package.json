@@ -6,14 +6,24 @@
   "type": "module",
   "scripts": {
     "test": "node server.js",
-    "dev": "nodemon server.js"
+    "start":"node server.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mhgkhan/gh-blog.git"
   },
   "keywords": [
-    "gh-blog"
+    "gh-blog",
+    "ghazna blog",
+    "muhammad Hasnain blog",
+    "muhammad hasnain ghazna blog",
+    "mhgkhan blog",
+    "hasnain dev blog",
+    "GH-BLOG",
+    "gh blog",
+    "blog",
+    "mern stack blog"
   ],
   "author": "GHAZNAA'S",
   "license": "ISC",

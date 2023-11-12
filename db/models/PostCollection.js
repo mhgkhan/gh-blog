@@ -15,6 +15,7 @@ const postSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    category:{type:String,required:true},
     slug: {
         type: String,
         required: true,
@@ -23,6 +24,14 @@ const postSchema = mongoose.Schema({
     image: {
         type: String,
         required: true
+    },
+    imagewithpath:{
+        type: String,
+        required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }
 }, {
     timestamps: true
