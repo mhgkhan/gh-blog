@@ -7,25 +7,19 @@ import session from 'express-session'
 import path from 'path'
 import connectDB from './db/connection.js'
 import cors from 'cors'
-connectDB(app.get("env")==="development" ? process.env.DB_URI_LOCAL : process.env.DB_URI_PROD)
+
 
 
 export const app = express();
 
+// connecting to database
+connectDB(app.get("env") == "development" ? process.env.DB_URI_LOCAL : process.env.DB_URI_PROD)
 
-// imported routes 
+// imported routes || this is used in line 31 to line 32
 import userRouter from './routes/user/userRoutes.js'
 import postRouter from './routes/blogpost/postRouter.js'
 
-// app.use(session({
-//     name:"ghblogsession",
-//     secret:process.env.SESSION_SECRET,
-//     saveUninitialized:true,
-//     cookie:{
-//         httpOnly:true,
-//         secure:true,
-//     }
-// }))
+
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -34,12 +28,14 @@ app.use(express.json())
 app.use(express.static(path.join(process.cwd(), "./public")))
 
 
-
+// USEROP = USER OPERATIONS
+// BLOGOP = BLOG OPERATIONS
 app.use("/userop", userRouter);
 app.use("/blogop", postRouter);
 
-app.use("/", async (req,res)=>{
-    return res.json({success:true,message:"hello world"})
+
+app.use("/", async (req, res) => {
+    return res.json({ success: true, message: "WELCOME TO GH-BLOG-API ", author: "ghazna", gitub: "github.com/mhgkhanssss" })
 })
 
 
@@ -47,5 +43,5 @@ app.use("/", async (req,res)=>{
 
 
 app.listen(process.env.PORT, () => {
-    console.log("APP ARE LISTENNING ON PORT",process.env.PORT)
+    console.log("APP ARE LISTENNING ON PORT", process.env.PORT)
 })
