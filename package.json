@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "node server.js",
-    "start":"node server.js",
+    "test": "node app.js",
+    "start":"node app.js",
     "dev": "nodemon app.js"
   },
   "repository": {
