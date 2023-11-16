@@ -2,7 +2,6 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import express from 'express'
-import session from 'express-session'
 
 import path from 'path'
 import connectDB from './db/connection.js'

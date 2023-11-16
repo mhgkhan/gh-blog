@@ -9,9 +9,9 @@ export default class userActionController {
     // updating password of user 
     static updatePassword = async (req, res) => {
         try {
-            const { previusPass, newPass, confrimNewPass } = req.body;
+            const { previusPass, newPass, confirmNewPass } = req.body;
             // checking if valid or not 
-            const checkIfValidOrNot = checkReqBodyValidOrNot([previusPass, newPass, confrimNewPass]);
+            const checkIfValidOrNot = checkReqBodyValidOrNot([previusPass, newPass, confirmNewPass]);
             // console.log(checkIfValidOrNot)
             if (checkIfValidOrNot.includes(false)) return res.status(401).json({ success: false, message: "invilid credientials" })
             else {
@@ -25,7 +25,7 @@ export default class userActionController {
                     if (!comparePass) return res.status(401).json({ success: false, message: "Password is incorrect" })
                     else {
                         // converting the new pasword to hash 
-                        const newPassHashed = await bcrypt.hash(confrimNewPass, 6);
+                        const newPassHashed = await bcrypt.hash(confirmNewPass, 6);
                         // updating the password 
                         try {
                             await UserCollection.findOneAndUpdate({ email: userEmail }, { $set: { password: newPassHashed } })

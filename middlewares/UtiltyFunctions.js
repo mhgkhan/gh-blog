@@ -32,7 +32,7 @@ export const checkReqBodyValidOrNot = (arr) => {
 
 
 
-export const genToken = (obj) => jwt.sign(obj, process.env.SECRET_KEY_LOCAL);
-export const processToken = (token) => jwt.verify(token, process.env.SECRET_KEY_LOCAL);
+export const genToken = (obj) => jwt.sign(obj, process.env.SECRET_LOCAL);
+export const processToken = (token) => jwt.verify(token, process.env.SECRET_LOCAL);
 
 
