@@ -13,7 +13,11 @@ export default class getBlogController {
     }
     static getBlogsAll = async (req, res) => {
         try {
-            const blogs = await PostCollection.find({}).select({ _id: false, user: false })
+            const filter = req.query;
+            // console.log(filter)
+            const categoryQuery = filter?.category;
+            // console.log(categoryQuery)
+            const blogs = await PostCollection.find(categoryQuery==undefined?{}:categoryQuery == "general" ? {}:{category:categoryQuery}).select({ _id: false, user: false })
             return res.status(200).json({ success: true, message: blogs })
         } catch (error) {
             return res.status(500).json({ success: false, message: error })
