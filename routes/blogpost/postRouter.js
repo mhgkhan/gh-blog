@@ -8,7 +8,7 @@ import getBlogController from "../../controllers/blogpost/getBlogController.js";
 import { uploadImg } from "../../middlewares/uploadScript.js";
 
 // add new blog 
-postRouter.post("/create", authorization, uploadImg("blog_cover", "blog"), blogpostcontroller.addBlog);
+postRouter.post("/create", authorization,  blogpostcontroller.addBlog);
 // update blog
 postRouter.put("/action/update", authorization, blogpostcontroller.updateBlog)
 // delelte blog 

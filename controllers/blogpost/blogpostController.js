@@ -14,12 +14,12 @@ export default class blogpostcontroller {
             if (checkValid.includes(false)) return res.status(401).json({ success: false, message: "Invilid Credientials" })
             else {
                 //  checking if file is comming or not 
-                if (!req.file) return res.status(400).json({ success: false, message: "cover image is requried" })
-                else {
+                // if (!req.file) return res.status(400).json({ success: false, message: "cover image is requried" })
+                // else {
                     // console.log(req.file)
-                    const image = req.file.filename;
+                    const image = req.file?.filename; // else undefiend
                     const userEmail = req.userEmail;
-                    const imagewithpath = `${path.join(process.cwd(), `./raw/images/blog/${image}`)}`
+                    const imagewithpath = image == undefined ? image : `${path.join(process.cwd(), `./raw/images/blog/${image}`)}`
                     // checking if user is exists or not 
                     const checkUserExists = await existUserByEmail(userEmail);
                     if (!checkUserExists) return res.status(400).json({ success: false, message: "Please first signup then try to post a blog" })
@@ -29,7 +29,7 @@ export default class blogpostcontroller {
                         if (createedBlog.user == checkUserExists._id) return res.status(201).json({ success: true, message: "Blog has been posted." })
                         else return res.status(500).json({ success: false, message: "some went wrong." })
                     }
-                }
+                // }
             }
         } catch (error) {
             console.log(error)
