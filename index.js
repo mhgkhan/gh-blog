@@ -34,7 +34,7 @@ app.use("/blogop", postRouter);
 
 
 app.use("/", async (req, res) => {
-    return res.json({ success: true, message: "WELCOME TO GH-BLOG-API ", author: "ghazna", gitub: "github.com/mhgkhanssss" })
+    return res.json({ success: true, message: "WELCOME TO GH-BLOG-API ", author: "GH-COMPANY", gitub: "https://github.com/mhgkhan" })
 })
 
 
