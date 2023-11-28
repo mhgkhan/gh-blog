@@ -37,10 +37,10 @@ class userController {
                     const encryptPass = await bcrypt.hash(confirmpassword, 5);
                     const addDatatoDb = await createUsr(email, encryptPass)
                     const token = genToken({ id: addDatatoDb._id, email: addDatatoDb.email })
-                    return res.status(201).json({ success: true, message: "user created", token })
+                    return res.status(201).json({ success: true, message: "Account creted", token })
                 }
                 else {
-                    return res.status(400).json({ success: false, message: "user already exists" })
+                    return res.status(400).json({ success: false, message: "user of this email is already exists" })
                 }
             }
 
@@ -68,7 +68,8 @@ class userController {
                     const comparingPss = await bcrypt.compare(password, checkExists.password);
                     if (comparingPss) {
                         const token = genToken({ id: checkExists._id, email: checkExists.email })
-                        return res.status(200).json({ success: true, message: "User signined", token })
+                        
+                        return res.status(200).json({ success: true, message: "confirmed .. ", token })
                     }
                     else {
                         return res.status(404).json({ success: false, message: "Email or password is incorrect" })

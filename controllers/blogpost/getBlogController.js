@@ -4,7 +4,7 @@ export default class getBlogController {
     static getBlog = async (req, res) => {
         try {
             const slug = req.params.slug;
-            console.log(slug)
+            // console.log(slug)
             const thisBlog = await PostCollection.findOne({ slug: slug }).select({ _id: false, user: 0 })
             return res.status(200).json({ success: true, message: thisBlog })
         } catch (error) {

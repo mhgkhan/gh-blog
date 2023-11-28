@@ -12,6 +12,7 @@ userRouter.post("/signup", userController.signupUser)
     .post("/signin", userController.signInUser)
     .post("/userinfo", authorization, userController.addInfo);
 
+    
     // for user actions (passwod update, upload image, or update any information )
     userRouter.put("/action/updatepassword", authorization, userActionController.updatePassword);
     userRouter.put("/action/updateinfo", authorization, userActionController.updateUserInfo);
