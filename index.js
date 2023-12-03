@@ -12,7 +12,8 @@ import cors from 'cors'
 export const app = express();
 
 // connecting to database
-connectDB(app.get("env") == "development" ? "mongodb://localhost:27017/ghblog" : process.env.DB_URI_PROD)
+// connectDB(app.get("env") == "development" ? "mongodb://localhost:27017/ghblog" : process.env.DB_URI_PROD)
+connectDB();
 
 // imported routes || this is used in line 31 to line 32
 import userRouter from './routes/user/userRoutes.js'
