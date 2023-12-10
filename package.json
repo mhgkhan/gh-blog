@@ -5,9 +5,9 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "node index.js",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "test": "node server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
