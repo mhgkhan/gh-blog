@@ -1,27 +1,44 @@
-import {app} from './index.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
-import os from "os"
-import cluster from 'cluster'
+import express from 'express'
+
+import path from 'path'
+import connectDB from './db/connection.js'
+import cors from 'cors'
 
 
 
-if (cluster.isPrimary) {
-    const cpus = os.cpus()
+const app = express();
 
-    if (cpus.length > 10) {
-        for (let index = 0; index < 10; index++) {
-            cluster.fork()
-        }
-    }
-    else {
-        for (let index = 0; index < cpus.length; index++) {
-            cluster.fork()
-        }
-    }
-}
+// connecting to database
+connectDB(app.get("env") == "development" ? "mongodb://localhost:27017/GHBLOGPROJECT" : process.env.DB_URI_PROD)
+// imported routes || this is used in line 31 to line 32
+import userRouter from './routes/user/userRoutes.js'
+import postRouter from './routes/blogpost/postRouter.js'
 
-else {
-    app.listen(process.env.PORT, () => {
-        console.log("APP ARE LISTENNING ON PORT",process.env.PORT)
-    })
-}
+
+app.use(cors())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
+
+app.use(express.static(path.join(process.cwd(), "./public")))
+
+
+// USEROP = USER OPERATIONS
+// BLOGOP = BLOG OPERATIONS
+app.use("/userop", userRouter);
+app.use("/blogop", postRouter);
+
+
+app.use("/", async (req, res) => {
+    return res.json({ success: true, message: "WELCOME TO GH-BLOG-API ", author: "GH-COMPANY", gitub: "https://github.com/mhgkhan" })
+})
+
+app.listen(process.env.PORT, () => {
+    console.log("APP ARE LISTENNING ON PORT",process.env.PORT)
+})
+
+
+export default app
